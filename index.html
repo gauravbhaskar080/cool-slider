@@ -24,18 +24,17 @@
                 <p>Nature has a way of reminding us that there is beauty in simplicity, tranquility in stillness, and harmony in embracing its captivating scenes.</p>
                 <input type="text" placeholder="Search">
             </div>
-        </div>\
+        </div>
         <div class="slider">
             <img src="Radiance_img/left-arrow.png" id="prev">
             <div class="preview">
-                <img src="Radiance_img/small1.png" class="active thumbnail">
-                <img src="Radiance_img/small2.png" class="thumbnail">
-                <img src="Radiance_img/small3.png" class="thumbnail">
-                <img src="Radiance_img/small4.png" class="thumbnail">
-                <img src="Radiance_img/small5.png" class="thumbnail">
+                <img src="Radiance_img/small1.png" class="thumbnail active" onclick="changeBackground(0)">
+                <img src="Radiance_img/small2.png" class="thumbnail" onclick="changeBackground(1)">
+                <img src="Radiance_img/small3.png" class="thumbnail" onclick="changeBackground(2)">
+                <img src="Radiance_img/small4.png" class="thumbnail" onclick="changeBackground(3)">
+                <img src="Radiance_img/small5.png" class="thumbnail" onclick="changeBackground(4)">
             </div>
             <img src="Radiance_img/right-arrow.png" id="next">
-
         </div>
     </div>
     <script>
@@ -44,34 +43,33 @@
         var thumbnail = document.getElementsByClassName("thumbnail");
         var hero = document.getElementById("hero");
 
-        var backgroundImg = new Array(
+        var backgroundImg = [
             "Radiance_img/bg1.png",
             "Radiance_img/bg2.png",
             "Radiance_img/bg3.png",
             "Radiance_img/bg4.png",
             "Radiance_img/bg5.png"
-        );
+        ];
         let i = 0;
-        next.onclick = function(){
 
-            if(i < 4){
-                hero.style.backgroundImage = 'url("'+backgroundImg[i+1]+'")';
-                thumbnail[i+1].classList.add("active");
-                thumbnail[i].classList.remove("active");
-                i++;
-            }
+        function changeBackground(index) {
+            hero.style.backgroundImage = 'url("' + backgroundImg[index] + '")';
+            thumbnail[i].classList.remove("active");
+            thumbnail[index].classList.add("active");
+            i = index;
         }
 
-        prev.onclick = function(){
-
-            if(i > 0){
-                hero.style.backgroundImage = 'url("'+backgroundImg[i-1]+'")';
-                thumbnail[i-1].classList.add("active");
-                thumbnail[i].classList.remove("active");
-                i--;
+        next.onclick = function() {
+            if (i < 4) {
+                changeBackground(i + 1);
             }
-        }
+        };
 
+        prev.onclick = function() {
+            if (i > 0) {
+                changeBackground(i - 1);
+            }
+        };
     </script>
 </body>
 
